@@ -7,7 +7,7 @@ const {
   createNewProduct,
   updateProduct,
   deleteProduct,
-} = require("../db/product");
+} = require("../db/products");
 
 // get all products
 router.get("/products", async (req, res, next) => {

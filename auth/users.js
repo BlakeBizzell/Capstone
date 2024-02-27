@@ -11,7 +11,7 @@ const {
   deleteUser,
 } = require("../db/user");
 
-const { isLoggedIn } = require("./midleware");
+const { isLoggedIn } = require("./middleware");
 
 // get all users
 router.get("/users", async (req, res, next) => {
