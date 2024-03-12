@@ -6,6 +6,7 @@ const {
   getAllUsers,
   getUserById,
   loginUser,
+  logOutUser,
   createNewUser,
   updateUser,
   deleteUser,
@@ -22,16 +23,20 @@ router.get("/users", async (req, res, next) => {
     next(err);
   }
 });
+
 router.get("/users/verify-token", async (req, res, next) => {
-  const test = await getUserById("Foo");
-  res.status(401).send(test);
+  try {
+    const test = await getUserById("Foo");
+    res.status(401).send(test);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // get user by id
 router.get("/users/:id", async (req, res, next) => {
   try {
     const user = await getUserById(req.params.id);
-
     res.send(user);
   } catch (err) {
     next(err);
@@ -46,6 +51,22 @@ router.post("/users/login", async (req, res, next) => {
     res.status(200).json({ user, token });
   } catch (error) {
     res.status(401).json({ error: error.message });
+  }
+});
+
+// user logout
+router.delete("/users/logout", async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const loggedOut = await logOutUser(userId);
+    if (loggedOut) {
+      res.status(200).json({ message: "User Successfully logged out" });
+    } else {
+      res.status(500).json({ error: "An error occurred during logout" });
+    }
+  } catch (error) {
+    console.error("Error in user logout:", error);
+    res.status(500).json({ error: "An error occurred during logout" });
   }
 });
 
@@ -73,8 +94,7 @@ router.put("/users/:id", async (req, res, next) => {
 router.delete("/users/:id", async (req, res, next) => {
   try {
     const user = await deleteUser(req);
-
-    res.send("successfully deleted");
+    res.send("Successfully deleted");
   } catch (err) {
     next(err);
   }
