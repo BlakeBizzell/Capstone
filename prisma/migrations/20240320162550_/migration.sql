@@ -111,6 +111,16 @@ CREATE TABLE "TreasureInfo" (
     CONSTRAINT "TreasureInfo_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Feedback" (
+    "id" SERIAL NOT NULL,
+    "feedback" TEXT NOT NULL,
+    "ScreenShots" TEXT[],
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Feedback_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Users_username_key" ON "Users"("username");
 

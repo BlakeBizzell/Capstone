@@ -113,5 +113,5 @@ module.exports = {
   savePlayerInfo,
   saveMonsterInfo,
   saveRandomName,
-  saveTreasureInfo, // Export the new function
+  saveTreasureInfo, 
 };
