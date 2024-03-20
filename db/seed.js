@@ -11,6 +11,7 @@ async function createUsers() {
         lastName: "Blake",
         email: "Blake@email.com",
         admin: true,
+
       },
       {
         username: "toni",
@@ -35,24 +36,25 @@ async function createUsers() {
 async function createProducts() {
   const products = [
     {
-      name: "free tier",
-      price: 0.0,
-      description: "free tier subscription model",
+      name: "Shirt",
+      price: 25.0,
+      description: "A stylish shirt.",
       class: "subscription",
     },
     {
-      name: "player tier",
-      price: 0.99,
-      description: "player tier subscription model",
+      name: "Poster",
+      price: 5.00,
+      description: "A decorative poster offering easy to grab rules.",
       class: "subscription",
     },
     {
-      name: "DM tier",
-      price: 4.99,
-      description: "DM tier subscription model",
+      name: "Mug",
+      price: 15.00,
+      description: "A durable mug part to hold your players tears.",
       class: "subscription",
     },
   ];
+
 
   await prisma.product.createMany({
     data: products,
