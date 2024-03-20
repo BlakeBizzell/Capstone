@@ -18,18 +18,20 @@ model Product {
 }
 
 model Users {
-  id          Int           @id @default(autoincrement())
-  username    String?       @unique
-  password    String?
-  firstName   String?
-  lastName    String?
-  email       String?
-  admin       Boolean       @default(false)
-  cartItems   CartItem[]
-  tokens      Token[]
-  carts       Cart[]
-  players     Player[]
-  MonsterInfo MonsterInfo[]
+  id           Int            @id @default(autoincrement())
+  username     String?        @unique
+  password     String?
+  firstName    String?
+  lastName     String?
+  email        String?
+  admin        Boolean        @default(false)
+  cartItems    CartItem[]
+  tokens       Token[]
+  carts        Cart[]
+  players      Player[]
+  MonsterInfo  MonsterInfo[]
+  RandomName   RandomName[]
+  TreasureInfo TreasureInfo[]
 }
 
 model Player {
@@ -86,6 +88,32 @@ model MonsterInfo {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  user   Users? @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model RandomName {
+  id        Int      @id @default(autoincrement())
+  race      String
+  firstName String
+  lastName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   Users @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model TreasureInfo {
+  id        Int      @id @default(autoincrement())
+  type      String 
+  name      String? 
+  amount    Int? 
+  unit      String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 
   user   Users? @relation(fields: [userId], references: [id])
   userId Int
