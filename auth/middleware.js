@@ -9,13 +9,13 @@ const isLoggedIn = async (req, res, next) => {
       throw new Error("Token is missing");
     }
 
-    const tokenFound = await findUserByToken(token);
+    const user = await findUserByToken(token);
 
-    if (!tokenFound) {
+    if (!user) {
       throw new Error("Token not found or invalid");
     }
 
-    req.userId = tokenFound;
+    req.user = user;
 
     next();
   } catch (error) {
