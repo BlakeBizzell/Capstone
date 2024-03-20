@@ -117,7 +117,6 @@ router.post("/random-name-saves", async (req, res) => {
 });
 
 router.post("/treasure-saves", async (req, res) => {
-  // Added route for saving treasure information
   try {
     const userId = req.body.userId;
     const treasureData = req.body;
