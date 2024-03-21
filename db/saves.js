@@ -32,14 +32,14 @@ async function savePlayerInfo(userId, playerData) {
 
 async function saveMonsterInfo(userId, monsterData) {
   try {
-    const { name, challengeRating, hitPoints } = monsterData;
+    const { name, challenge_rating, hit_points } = monsterData;
 
     await prisma.monsterInfo.create({
       data: {
         name: name,
-        challengeRating: parseFloat(challengeRating), // Convert to float
-        hitPoints: Number(hitPoints), // Assuming hitPoints is an integer
-        userId: Number(userId),
+        challengeRating: Number.parseFloat(challenge_rating),
+        hitPoints: Number(hit_points),
+        user: { connect: { id: Number(userId) } },
       },
     });
 
@@ -113,5 +113,5 @@ module.exports = {
   savePlayerInfo,
   saveMonsterInfo,
   saveRandomName,
-  saveTreasureInfo, 
+  saveTreasureInfo,
 };
