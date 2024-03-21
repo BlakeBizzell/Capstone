@@ -16,25 +16,25 @@ router.get("/saves/:userId", async (req, res) => {
 
     const playerInfo = await prisma.player.findMany({
       where: {
-        userId: userId,
+        userId: req.body.userId,
       },
     });
 
     const monsterInfo = await prisma.monsterInfo.findMany({
       where: {
-        userId: userId,
+        userId: req.body.userId,
       },
     });
 
     const randomNameInfo = await prisma.randomName.findMany({
       where: {
-        userId: userId,
+        userId: req.body.userId,
       },
     });
 
     const treasureInfo = await prisma.treasureInfo.findMany({
       where: {
-        userId: userId,
+        userId: req.body.userId,
       },
     });
 
@@ -108,11 +108,9 @@ router.post("/random-name-saves", async (req, res) => {
     }
   } catch (error) {
     console.error("Error saving random name information:", error);
-    res
-      .status(500)
-      .json({
-        error: "An error occurred while saving random name information.",
-      });
+    res.status(500).json({
+      error: "An error occurred while saving random name information.",
+    });
   }
 });
 

@@ -16,7 +16,7 @@ async function savePlayerInfo(userId, playerData) {
         weaknesses,
         goals,
         sheetLink,
-        userId,
+        userId: Number(userId),
       },
     });
 
